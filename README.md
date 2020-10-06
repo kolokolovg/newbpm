@@ -14,3 +14,5 @@ Open web-app: http://localhost:8080/camunda/app/
 
 Use Dockerfile  
 Use `docker-compose up --build` or run docker-compose.yml from IDE
+
+Open web-app: http://localhost:8088/camunda/app/
