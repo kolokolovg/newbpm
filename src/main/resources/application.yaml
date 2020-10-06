@@ -1,0 +1,15 @@
+datasource:
+  type: com.zaxxer.hikari.HikariDataSource
+  url: jdbc:postgresql://localhost:5432/camunda
+  username: camunda
+  password: camunda
+  hikari:
+    connection-timeout: 5000
+    maximum-pool-size: 10
+    validation-timeout: 2000
+    leak-detection-threshold: 300000
+
+
+camunda.bpm.admin-user:
+  id: aplana
+  password: aplana
