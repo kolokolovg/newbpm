@@ -3,6 +3,7 @@ package com.aplana;
 import org.camunda.bpm.engine.RuntimeService;
 import org.camunda.bpm.engine.runtime.ProcessInstance;
 import org.camunda.bpm.spring.boot.starter.test.helper.AbstractProcessEngineRuleTest;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.camunda.bpm.engine.test.assertions.bpmn.BpmnAwareTests.assertThat;
 
+@Ignore
 @SpringBootTest
 @RunWith(SpringRunner.class)
 public class WorkflowTest extends AbstractProcessEngineRuleTest {
@@ -18,7 +20,7 @@ public class WorkflowTest extends AbstractProcessEngineRuleTest {
   @Autowired
   public RuntimeService runtimeService;
 
-  @Test
+  @Test()
   public void shouldExecuteHappyPath() {
     // given
     String processDefinitionKey = "newbpm-process";
