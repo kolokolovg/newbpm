@@ -11,5 +11,5 @@ spring:
       leak-detection-threshold: 300000
 
 camunda.bpm.admin-user:
-  id: aplana
-  password: aplana
+  id: 1
+  password: 1
