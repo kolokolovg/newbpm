@@ -4,7 +4,7 @@
     <bpmn:startEvent id="StartEvent_1" name="Введем переменную">
       <bpmn:extensionElements>
         <camunda:formData>
-          <camunda:formField id="testvalue" label="test value" type="string" />
+          <camunda:formField id="testvalue" label="test value" type="string" defaultValue="test" />
         </camunda:formData>
       </bpmn:extensionElements>
       <bpmn:outgoing>Flow_1sddax7</bpmn:outgoing>
@@ -19,7 +19,7 @@
     <bpmn:sequenceFlow id="Flow_1sddax7" sourceRef="StartEvent_1" targetRef="Activity_11s0s8h" />
     <bpmn:sequenceFlow id="Flow_0n5be3u" sourceRef="Activity_11s0s8h" targetRef="Input_check" />
     <bpmn:sequenceFlow id="Flow_1vouanl" sourceRef="Input_check" targetRef="EndEvent_0x6ir2l" />
-    <bpmn:userTask id="Input_check">
+    <bpmn:userTask id="Input_check" name="Java delegate output">
       <bpmn:extensionElements>
         <camunda:formData>
           <camunda:formField id="testvalue" label="testvalue" type="string" />

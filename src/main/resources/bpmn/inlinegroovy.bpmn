@@ -16,7 +16,7 @@
       <bpmn:script>result = status.toUpperCase()</bpmn:script>
     </bpmn:scriptTask>
     <bpmn:sequenceFlow id="Flow_1rumysr" sourceRef="change_status" targetRef="Activity_0kb7jw1" />
-    <bpmn:userTask id="Activity_0kb7jw1">
+    <bpmn:userTask id="Activity_0kb7jw1" name="Status">
       <bpmn:extensionElements>
         <camunda:formData>
           <camunda:formField id="result" type="string" />

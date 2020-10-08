@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_1uekqor" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.2.0">
+  <bpmn:process id="run_parallel_subprocesses" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1" name="старт">
+      <bpmn:outgoing>Flow_1xbrjxy</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:callActivity id="Run_java_delegate" name="Run java delegate" calledElement="java-delegate">
+      <bpmn:extensionElements>
+        <camunda:in source="a" target="testvalue" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0kendn4</bpmn:incoming>
+      <bpmn:outgoing>Flow_1j0o4ry</bpmn:outgoing>
+    </bpmn:callActivity>
+    <bpmn:endEvent id="Event_1m152vu">
+      <bpmn:incoming>Flow_1j0o4ry</bpmn:incoming>
+      <bpmn:incoming>Flow_0xq6esi</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_1j0o4ry" sourceRef="Run_java_delegate" targetRef="Event_1m152vu" />
+    <bpmn:parallelGateway id="Gateway_0h7445h">
+      <bpmn:incoming>Flow_1exh7sd</bpmn:incoming>
+      <bpmn:outgoing>Flow_0kendn4</bpmn:outgoing>
+      <bpmn:outgoing>Flow_0ihcw6f</bpmn:outgoing>
+    </bpmn:parallelGateway>
+    <bpmn:sequenceFlow id="Flow_0kendn4" sourceRef="Gateway_0h7445h" targetRef="Run_java_delegate" />
+    <bpmn:sequenceFlow id="Flow_0ihcw6f" sourceRef="Gateway_0h7445h" targetRef="Activity_0ud2t10" />
+    <bpmn:callActivity id="Activity_0ud2t10" name="Run inline script" calledElement="inline_groovy_script">
+      <bpmn:extensionElements>
+        <camunda:in source="b" target="status" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0ihcw6f</bpmn:incoming>
+      <bpmn:outgoing>Flow_0xq6esi</bpmn:outgoing>
+    </bpmn:callActivity>
+    <bpmn:sequenceFlow id="Flow_0xq6esi" sourceRef="Activity_0ud2t10" targetRef="Event_1m152vu" />
+    <bpmn:sequenceFlow id="Flow_1xbrjxy" sourceRef="StartEvent_1" targetRef="Activity_1hxj3u4" />
+    <bpmn:sequenceFlow id="Flow_1exh7sd" sourceRef="Activity_1hxj3u4" targetRef="Gateway_0h7445h" />
+    <bpmn:userTask id="Activity_1hxj3u4" name="set values">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="a" label="testValue = " type="string" />
+          <camunda:formField id="b" label="status = " type="string" />
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1xbrjxy</bpmn:incoming>
+      <bpmn:outgoing>Flow_1exh7sd</bpmn:outgoing>
+    </bpmn:userTask>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="run_parallel_subprocesses">
+      <bpmndi:BPMNEdge id="Flow_1j0o4ry_di" bpmnElement="Flow_1j0o4ry">
+        <di:waypoint x="620" y="120" />
+        <di:waypoint x="686" y="120" />
+        <di:waypoint x="686" y="190" />
+        <di:waypoint x="762" y="190" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0kendn4_di" bpmnElement="Flow_0kendn4">
+        <di:waypoint x="440" y="165" />
+        <di:waypoint x="440" y="123" />
+        <di:waypoint x="520" y="123" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0ihcw6f_di" bpmnElement="Flow_0ihcw6f">
+        <di:waypoint x="440" y="215" />
+        <di:waypoint x="440" y="300" />
+        <di:waypoint x="510" y="300" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0xq6esi_di" bpmnElement="Flow_0xq6esi">
+        <di:waypoint x="610" y="300" />
+        <di:waypoint x="686" y="300" />
+        <di:waypoint x="686" y="190" />
+        <di:waypoint x="762" y="190" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1xbrjxy_di" bpmnElement="Flow_1xbrjxy">
+        <di:waypoint x="188" y="190" />
+        <di:waypoint x="280" y="190" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1exh7sd_di" bpmnElement="Flow_1exh7sd">
+        <di:waypoint x="380" y="190" />
+        <di:waypoint x="415" y="190" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Event_1m152vu_di" bpmnElement="Event_1m152vu">
+        <dc:Bounds x="762" y="172" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="152" y="172" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="156" y="215" width="29" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1lwysg5_di" bpmnElement="Run_java_delegate">
+        <dc:Bounds x="520" y="80" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0bpfdsd_di" bpmnElement="Activity_0ud2t10">
+        <dc:Bounds x="510" y="260" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_16ufnur_di" bpmnElement="Gateway_0h7445h">
+        <dc:Bounds x="415" y="165" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_02w2gpb_di" bpmnElement="Activity_1hxj3u4">
+        <dc:Bounds x="280" y="150" width="100" height="80" />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
