@@ -74,6 +74,13 @@
             <scope>test</scope>
         </dependency>
 
+        <dependency>
+            <groupId>org.codehaus.groovy</groupId>
+            <artifactId>groovy-all</artifactId>
+            <version>2.5.9</version>
+            <type>pom</type>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -82,9 +89,6 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>${spring-boot.version}</version>
-                <configuration>
-                    <layout>ZIP</layout>
-                </configuration>
                 <executions>
                     <execution>
                         <goals>
